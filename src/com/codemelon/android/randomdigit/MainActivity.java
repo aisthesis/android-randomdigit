@@ -38,12 +38,19 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // set up parent view
         RelativeLayout relativeLayout = new RelativeLayout(this);
+        relativeLayout.setBackgroundColor(BACKGROUND_COLOR);
         RelativeLayout.LayoutParams relativeLayoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT);
-        relativeLayout.setBackgroundColor(BACKGROUND_COLOR);
-
+        // set up TextView containing the random number
+        initRandomNumberContainer(relativeLayout);
+        // create the view
+        setContentView(relativeLayout, relativeLayoutParams);
+    }
+    
+    private void initRandomNumberContainer(RelativeLayout relativeLayout) {
         TextView textView = new TextView(this);
         textView.setText(String.valueOf((int) (Math.random() * 10.0)));
         RelativeLayout.LayoutParams textViewParams = new RelativeLayout.LayoutParams(
@@ -55,7 +62,5 @@ public class MainActivity extends Activity {
 
         textView.setLayoutParams(textViewParams);
         relativeLayout.addView(textView);
-
-        setContentView(relativeLayout, relativeLayoutParams);
     }
 }

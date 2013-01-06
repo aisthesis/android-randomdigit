@@ -17,10 +17,6 @@
 <resources>
 
     <string name="app_name">Random Digit</string>
-    <string name="sample_number">2</string>
     <string name="menu_settings">Settings</string>
-
-    <color name="dark_gray">#555</color>
-    <color name="melon">#f8a122</color>
 
 </resources>
