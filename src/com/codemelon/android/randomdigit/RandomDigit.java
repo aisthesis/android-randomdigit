@@ -58,12 +58,6 @@ public class RandomDigit extends Activity {
         initListener();
         // create the view
         setContentView(mRelativeLayout, relativeLayoutParams);
-        Toast toast = Toast.makeText(this, "Tap screen to refresh",
-                Toast.LENGTH_LONG);
-        int verticalOffset = getDisplayHeight() / 5;
-        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0,
-                verticalOffset);
-        toast.show();
     }
 
     private void initRandomNumberContainer() {
@@ -89,11 +83,5 @@ public class RandomDigit extends Activity {
                 mTextView.invalidate();
             }
         });
-    }
-    
-    private int getDisplayHeight() {
-        Point size = new Point();
-        getWindowManager().getDefaultDisplay().getSize(size);
-        return size.y;
     }
 }
