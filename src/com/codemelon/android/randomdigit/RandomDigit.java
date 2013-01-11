@@ -17,17 +17,19 @@
 package com.codemelon.android.randomdigit;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
- * Generate a random digit between 0 and 9. Refresh the digit when
- * you click anywhere on the screen.
- * 
- * Cf. http://stackoverflow.com/questions/4979212/programmatically-creating-a-
+ * Generate a random digit between 0 and 9. Refresh the digit when you click
+ * anywhere on the screen. Cf.
+ * http://stackoverflow.com/questions/4979212/programmatically-creating-a-
  * relativelayout-in-android
  * 
  * @author Marshall Farrier
@@ -56,6 +58,12 @@ public class RandomDigit extends Activity {
         initListener();
         // create the view
         setContentView(mRelativeLayout, relativeLayoutParams);
+        Toast toast = Toast.makeText(this, "Tap screen to refresh",
+                Toast.LENGTH_LONG);
+        int verticalOffset = getDisplayHeight() / 5;
+        toast.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL, 0,
+                verticalOffset);
+        toast.show();
     }
 
     private void initRandomNumberContainer() {
@@ -71,7 +79,7 @@ public class RandomDigit extends Activity {
         mTextView.setLayoutParams(textViewParams);
         mRelativeLayout.addView(mTextView);
     }
-    
+
     private void initListener() {
         mRelativeLayout.setOnClickListener(new View.OnClickListener() {
 
@@ -81,5 +89,11 @@ public class RandomDigit extends Activity {
                 mTextView.invalidate();
             }
         });
+    }
+    
+    private int getDisplayHeight() {
+        Point size = new Point();
+        getWindowManager().getDefaultDisplay().getSize(size);
+        return size.y;
     }
 }
