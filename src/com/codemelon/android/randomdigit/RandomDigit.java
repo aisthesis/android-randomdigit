@@ -51,7 +51,8 @@ public class RandomDigit extends Activity {
                 RelativeLayout.LayoutParams.MATCH_PARENT);
         // set up TextView containing the random number
         initRandomNumberContainer();
-        initRefreshButton();
+        initListener();
+        //initRefreshButton();
         // create the view
         setContentView(mRelativeLayout, relativeLayoutParams);
     }
@@ -69,6 +70,17 @@ public class RandomDigit extends Activity {
         mTextView.setLayoutParams(textViewParams);
         mRelativeLayout.addView(mTextView);
     }
+    
+    private void initListener() {
+        mRelativeLayout.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mTextView.setText(String.valueOf((int) (Math.random() * 10.0)));
+                mTextView.invalidate();
+            }
+        });
+    }
 
     private void initRefreshButton() {
         Button refreshButton = new Button(this);
@@ -76,6 +88,8 @@ public class RandomDigit extends Activity {
         RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
+        buttonParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        buttonParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         refreshButton.setLayoutParams(buttonParams);
 
         refreshButton.setOnClickListener(new View.OnClickListener() {
