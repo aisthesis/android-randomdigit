@@ -20,11 +20,13 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 /**
+ * Generate a random digit between 0 and 9. Refresh the digit when
+ * you click anywhere on the screen.
+ * 
  * Cf. http://stackoverflow.com/questions/4979212/programmatically-creating-a-
  * relativelayout-in-android
  * 
@@ -52,7 +54,6 @@ public class RandomDigit extends Activity {
         // set up TextView containing the random number
         initRandomNumberContainer();
         initListener();
-        //initRefreshButton();
         // create the view
         setContentView(mRelativeLayout, relativeLayoutParams);
     }
@@ -80,26 +81,5 @@ public class RandomDigit extends Activity {
                 mTextView.invalidate();
             }
         });
-    }
-
-    private void initRefreshButton() {
-        Button refreshButton = new Button(this);
-        refreshButton.setText(R.string.refresh);
-        RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-        buttonParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
-        buttonParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-        refreshButton.setLayoutParams(buttonParams);
-
-        refreshButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                mTextView.setText(String.valueOf((int) (Math.random() * 10.0)));
-                mTextView.invalidate();
-            }
-        });
-        mRelativeLayout.addView(refreshButton);
     }
 }
