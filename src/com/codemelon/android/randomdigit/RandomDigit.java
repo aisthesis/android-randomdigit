@@ -35,37 +35,34 @@ public class RandomDigit extends Activity {
     private static final int BACKGROUND_COLOR = 0xff444444;
     private static final int TEXT_COLOR = 0xfff8a122;
     
-    private RelativeLayout mRelativeLayout;
-    private RelativeLayout.LayoutParams mRelativeLayoutParams;
     private TextView mTextView;
-    private RelativeLayout.LayoutParams mTextViewParams;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // set up parent view
-        mRelativeLayout = new RelativeLayout(this);
-        mRelativeLayout.setBackgroundColor(BACKGROUND_COLOR);
-        mRelativeLayoutParams = new RelativeLayout.LayoutParams(
+        RelativeLayout relativeLayout = new RelativeLayout(this);
+        relativeLayout.setBackgroundColor(BACKGROUND_COLOR);
+        RelativeLayout.LayoutParams relativeLayoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT);
         // set up TextView containing the random number
-        initRandomNumberContainer(mRelativeLayout);
+        initRandomNumberContainer(relativeLayout);
         // create the view
-        setContentView(mRelativeLayout, mRelativeLayoutParams);
+        setContentView(relativeLayout, relativeLayoutParams);
     }
     
     private void initRandomNumberContainer(RelativeLayout relativeLayout) {
         mTextView = new TextView(this);
         mTextView.setText(String.valueOf((int) (Math.random() * 10.0)));
-        mTextViewParams = new RelativeLayout.LayoutParams(
+        RelativeLayout.LayoutParams textViewParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
-        mTextViewParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        textViewParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         mTextView.setTextColor(TEXT_COLOR);
         mTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 192.0F);
 
-        mTextView.setLayoutParams(mTextViewParams);
+        mTextView.setLayoutParams(textViewParams);
         relativeLayout.addView(mTextView);
     }
 }
