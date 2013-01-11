@@ -19,6 +19,8 @@ package com.codemelon.android.randomdigit;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.TypedValue;
+import android.view.View;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -34,25 +36,27 @@ import android.widget.TextView;
 public class RandomDigit extends Activity {
     private static final int BACKGROUND_COLOR = 0xff444444;
     private static final int TEXT_COLOR = 0xfff8a122;
-    
+
+    private RelativeLayout mRelativeLayout;
     private TextView mTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // set up parent view
-        RelativeLayout relativeLayout = new RelativeLayout(this);
-        relativeLayout.setBackgroundColor(BACKGROUND_COLOR);
+        mRelativeLayout = new RelativeLayout(this);
+        mRelativeLayout.setBackgroundColor(BACKGROUND_COLOR);
         RelativeLayout.LayoutParams relativeLayoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT);
         // set up TextView containing the random number
-        initRandomNumberContainer(relativeLayout);
+        initRandomNumberContainer();
+        initRefreshButton();
         // create the view
-        setContentView(relativeLayout, relativeLayoutParams);
+        setContentView(mRelativeLayout, relativeLayoutParams);
     }
-    
-    private void initRandomNumberContainer(RelativeLayout relativeLayout) {
+
+    private void initRandomNumberContainer() {
         mTextView = new TextView(this);
         mTextView.setText(String.valueOf((int) (Math.random() * 10.0)));
         RelativeLayout.LayoutParams textViewParams = new RelativeLayout.LayoutParams(
@@ -63,6 +67,25 @@ public class RandomDigit extends Activity {
         mTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 192.0F);
 
         mTextView.setLayoutParams(textViewParams);
-        relativeLayout.addView(mTextView);
+        mRelativeLayout.addView(mTextView);
+    }
+
+    private void initRefreshButton() {
+        Button refreshButton = new Button(this);
+        refreshButton.setText(R.string.refresh);
+        RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        refreshButton.setLayoutParams(buttonParams);
+
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                mTextView.setText(String.valueOf((int) (Math.random() * 10.0)));
+                mTextView.invalidate();
+            }
+        });
+        mRelativeLayout.addView(refreshButton);
     }
 }
