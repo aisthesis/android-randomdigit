@@ -17,14 +17,11 @@
 package com.codemelon.android.randomdigit;
 
 import android.app.Activity;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.util.TypedValue;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 /**
  * Generate a random digit between 0 and 9. Refresh the digit when you click
