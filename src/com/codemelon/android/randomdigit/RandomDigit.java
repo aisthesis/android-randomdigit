@@ -35,7 +35,7 @@ import android.widget.TextView;
  */
 
 public class RandomDigit extends Activity {
-    private static final int BACKGROUND_COLOR = 0xff444444;
+    private static final int BACKGROUND_COLOR = 0xff0f0f0f;
     private static final int TEXT_COLOR = 0xfff8a122;
 
     private RelativeLayout mRelativeLayout;
